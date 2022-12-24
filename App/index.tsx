@@ -16,14 +16,14 @@ const Main = (): React.ReactElement => {
 
   return (
     <Container>
-      hello
+      ----- hello -----
       <BrowserRouter>
         <Routes>
-          <Route path='/' component={PaymentPage} />
-          <Route path='/account' component={Account} />
-          <Route path='/pay' component={PaymentPage} />
-          <Route path='/paymentSuccessful' component={PaymentSuccessful} />
-          <Route exact path='/error' component={Error} />
+          <Route path='/' element={<PaymentPage />} />
+          <Route path='/account' element={<Account />} />
+          <Route path='/pay' element={<PaymentPage />} />
+          <Route path='/paymentSuccessful' element={<PaymentSuccessful />} />
+          <Route path='/error' element={<Error />} />
         </Routes>
       </BrowserRouter>
     </Container>
