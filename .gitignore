@@ -6,5 +6,6 @@ index.js.map
 
 node_modules/
 dist/
+yarn.lock
 
 .DS_Store
