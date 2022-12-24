@@ -1,9 +1,7 @@
-import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
-
+import * as React from 'react'
+import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import { CustomerPortal, useAuth } from '@billing-js/react-billing-js'
 import tw from 'tailwind-styled-components'
-
 import PaymentPage from './PaymentPage'
 import Account from './Account'
 import PaymentSuccessful from './PaymentSuccessful'
@@ -18,13 +16,16 @@ const Main = (): React.ReactElement => {
 
   return (
     <Container>
-      <Switch>
-        <Route exact path="/account" component={Account} />
-        <Route exact path="/pay" component={PaymentPage} />
-        <Route exact path="/paymentSuccessful" component={PaymentSuccessful} />
-        <Route exact path="/error" component={Error} />
-        <Redirect to="/error" />
-      </Switch>
+      hello
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' component={PaymentPage} />
+          <Route path='/account' component={Account} />
+          <Route path='/pay' component={PaymentPage} />
+          <Route path='/paymentSuccessful' component={PaymentSuccessful} />
+          <Route exact path='/error' component={Error} />
+        </Routes>
+      </BrowserRouter>
     </Container>
   )
 }
