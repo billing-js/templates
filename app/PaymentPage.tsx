@@ -72,10 +72,8 @@ export default () => {
          *************************************************/}
         <div className='max-w-7xl bg-white'>
           <div className=' align-center flex flex-col'>
-            <h1 className='mt-3 text-center text-3xl font-extrabold text-gray-900'>Pricing plans for teams of all sizes</h1>
-            <p className='mt-2 text-center text-xl text-gray-500'>
-              Find the perfect plan for you or your team that's packed with all the Premium features
-            </p>
+            <h1 className='mt-3 text-center text-3xl font-extrabold text-gray-900'>Premium features</h1>
+            <p className='mt-2 text-center text-xl text-gray-500'>Find the perfect plan for you or your team</p>
           </div>
           <div className='mx-auto flex max-w-lg flex-col items-center justify-center rounded-xl bg-white px-6 text-center'>
             {/* SWITCH */}
