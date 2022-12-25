@@ -9,7 +9,9 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.6.1",
-    "tailwind-styled-components": "^2.2.0"
+    "tailwind-styled-components": "^2.2.0",
+    "tailwindcss": "^3.2.4",
+    "postcss": "^8.4.20"
   },
   "scripts": {
     "start": "react-scripts start",
