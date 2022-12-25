@@ -1,7 +1,9 @@
 import { useAuth, useProducts, PaymentModal } from '@billing-js/react-billing-js'
 import React, { useEffect, useState } from 'react'
-import config from '../config'
 import PaymentForm from './PaymentForm'
+
+// @ts-ignore
+import config from '../config'
 
 export default () => {
   const { signIn, signOut, loading: authLoading, user } = useAuth()
@@ -30,7 +32,7 @@ export default () => {
       currency: { selectedCurrency, availableCurrencies, setCurrency },
       recurrence: { selectedRecurrence, availableRecurrences, setRecurrence },
     },
-  } = useProducts([config.stripe.products.premium], {
+  } = useProducts([config.stripe.products[0]], {
     modal: {
       maskClassName: 'bg-white opacity-75',
     },
@@ -71,8 +73,10 @@ export default () => {
          *************************************************/}
         <div className='max-w-7xl bg-white'>
           <div className=' align-center flex flex-col'>
-            <h1 className='mt-3 text-center text-3xl font-extrabold text-gray-900'>Remove the branding</h1>
-            <p className='mt-2 text-center text-xl text-gray-500'>Upgrade to remove the watermark</p>
+            <h1 className='mt-3 text-center text-3xl font-extrabold text-gray-900'>Pricing plans for teams of all sizes</h1>
+            <p className='mt-2 text-center text-xl text-gray-500'>
+              Find the perfect plan for you or your team that's packed with all the Premium features
+            </p>
           </div>
           <div className='mx-auto flex max-w-lg flex-col items-center justify-center rounded-xl bg-white px-6 text-center'>
             {/* SWITCH */}
@@ -110,31 +114,6 @@ export default () => {
                 <Feature>30-day money-back guarantee</Feature>
                 <Feature>24/7 Support</Feature>
               </ul>
-            </div>
-          </div>
-        </div>
-        {/* TRUSTED BY */}
-        <div className='m-3 max-w-xl divide-y divide-gray-200 rounded-xl border border-gray-200 bg-white p-3  shadow-sm'>
-          <div className='mx-auto max-w-7xl px-4'>
-            <div className='mx-auto max-w-4xl text-center'>
-              <h2 className='pb-3 text-3xl font-extrabold text-gray-900'>Trusted by 500,000+ professionals</h2>
-              <a
-                className='w-full'
-                target='_blank'
-                rel='noreferrer'
-                href='https://gsuite.google.com/marketplace/app/mail_merge_%F0%9F%93%A3/562406866377'
-              >
-                <div className='flex items-center justify-center text-lg text-blue-500 hover:text-blue-600'>
-                  View in the Workspace Marketplace{' '}
-                  <svg className='ml-2 h-4 w-4' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
-                    <path
-                      fillRule='evenodd'
-                      d='M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z'
-                      clipRule='evenodd'
-                    />
-                  </svg>
-                </div>
-              </a>
             </div>
           </div>
         </div>

@@ -16,7 +16,6 @@ const Main = (): React.ReactElement => {
 
   return (
     <Container>
-      ----- hello -----
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<PaymentPage />} />
