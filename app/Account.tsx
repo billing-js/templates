@@ -1,5 +1,6 @@
 import { useAuth, CustomerPortal } from '@billing-js/react-billing-js'
-import React, { useEffect, useState } from 'react'
+import * as React from 'react'
+import { useEffect, useState } from 'react'
 
 export default () => {
   const { signIn, loading, user } = useAuth()

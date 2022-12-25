@@ -1,5 +1,6 @@
 import { useAuth, useProducts, PaymentModal } from '@billing-js/react-billing-js'
-import React, { useEffect, useState } from 'react'
+import * as React from 'react'
+import { useEffect, useState } from 'react'
 import PaymentForm from './PaymentForm'
 
 // @ts-ignore
@@ -33,9 +34,7 @@ export default () => {
       recurrence: { selectedRecurrence, availableRecurrences, setRecurrence },
     },
   } = useProducts([config.stripe.products[0]], {
-    modal: {
-      maskClassName: 'bg-white opacity-75',
-    },
+    modal: { maskClassName: 'bg-white opacity-75' },
     defaultCurrency: 'usd',
     normalizePriceOnRecurrence: 'monthly',
     defaultRecurrence: 'yearly',
