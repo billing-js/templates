@@ -1,11 +1,14 @@
 import * as React from 'react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App'
+import App from './app'
 import { BillingProvider, BillingErrorType } from '@billing-js/react-billing-js'
 
 // @ts-ignore
 import config from './config'
+
+import 'tailwindcss/tailwind.css'
+import '@billing-js/react-billing-js/styles.css'
 
 const rootElement: any = document.getElementById('root')
 const root = createRoot(rootElement)
