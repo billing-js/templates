@@ -3,6 +3,5 @@ index.js.map
 *.log
 node_modules/
 dist/
-yarn.lock
-config.ts
+yarn.lock 
 .DS_Store
