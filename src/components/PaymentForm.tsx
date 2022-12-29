@@ -2,7 +2,7 @@ import * as React from 'react'
 import { PaymentField, PromotionCode, PaymentSummary } from '@billing-js/react-billing-js'
 import tw from 'tailwind-styled-components'
 
-export default ({ activeSubscription }: { activeSubscription?: boolean }) => {
+export default ({}: { activeSubscription?: boolean }) => {
   return (
     <Container>
       <PaymentSummary />
