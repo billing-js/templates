@@ -1,7 +1,6 @@
 import { useAuth, useProducts, PaymentModal } from '@billing-js/react-billing-js'
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import PaymentForm from './PaymentForm'
 import config from '../config'
 
 export default () => {
@@ -112,13 +111,6 @@ export default () => {
             </div>
           </div>
         </div>
-      </div>
-
-      {/**************************************************
-       *                 PAYMENT FORM
-       *************************************************/}
-      <div className='m-3 h-fit w-1/2 divide-y divide-gray-200 rounded-xl border border-gray-200 bg-white p-3 shadow-sm'>
-        <PaymentForm />
       </div>
     </div>
   )

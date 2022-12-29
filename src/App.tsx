@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { CustomerPortal, useAuth } from '@billing-js/react-billing-js'
 import tw from 'tailwind-styled-components'
 import PaymentPage from './components/PaymentPage'
