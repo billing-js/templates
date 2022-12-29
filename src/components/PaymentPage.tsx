@@ -2,8 +2,6 @@ import { useAuth, useProducts, PaymentModal } from '@billing-js/react-billing-js
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import PaymentForm from './PaymentForm'
-
-// @ts-ignore
 import config from '../config'
 
 export default () => {

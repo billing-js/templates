@@ -7,13 +7,9 @@ import Account from './components/Account'
 import PaymentSuccessful from './components/PaymentSuccessful'
 import Error from './components/Error'
 
-const Main = (): React.ReactElement => {
+export default (): React.ReactElement => {
   const { loading } = useAuth()
-
-  if (loading) {
-    return <div>loading...</div>
-  }
-
+  if (loading) return <div>loading...</div>
   return (
     <Container>
       <BrowserRouter>
@@ -28,8 +24,6 @@ const Main = (): React.ReactElement => {
     </Container>
   )
 }
-
-export default Main
 
 const Container = tw.div`
   max-w-5xl
