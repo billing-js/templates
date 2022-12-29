@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { CustomerPortal, useAuth } from '@billing-js/react-billing-js'
+import { useAuth } from '@billing-js/react-billing-js'
 import tw from 'tailwind-styled-components'
 import PaymentPage from './components/PaymentPage'
-import Account from './components/Account'
 import PaymentSuccessful from './components/PaymentSuccessful'
 import Error from './components/Error'
 
@@ -15,7 +14,6 @@ export default (): React.ReactElement => {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<PaymentPage />} />
-          <Route path='/account' element={<Account />} />
           <Route path='/pay' element={<PaymentPage />} />
           <Route path='/paymentSuccessful' element={<PaymentSuccessful />} />
           <Route path='/error' element={<Error />} />
