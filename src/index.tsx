@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './app'
+import App from './App'
 import { BillingProvider, BillingErrorType } from '@billing-js/react-billing-js'
 
 // @ts-ignore

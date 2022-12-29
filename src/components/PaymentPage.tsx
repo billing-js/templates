@@ -35,7 +35,7 @@ export default () => {
     },
   } = useProducts([config.stripe.products[0]], {
     modal: { maskClassName: 'bg-white opacity-75' },
-    defaultCurrency: 'usd',
+    defaultCurrency: 'eur',
     normalizePriceOnRecurrence: 'monthly',
     defaultRecurrence: 'yearly',
     onPaymentSuccessful: () => (window.location.href = '/paymentSuccessful'),

@@ -2,10 +2,10 @@ import * as React from 'react'
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import { CustomerPortal, useAuth } from '@billing-js/react-billing-js'
 import tw from 'tailwind-styled-components'
-import PaymentPage from './PaymentPage'
-import Account from './Account'
-import PaymentSuccessful from './PaymentSuccessful'
-import Error from './Error'
+import PaymentPage from './components/PaymentPage'
+import Account from './components/Account'
+import PaymentSuccessful from './components/PaymentSuccessful'
+import Error from './components/Error'
 
 const Main = (): React.ReactElement => {
   const { loading } = useAuth()
