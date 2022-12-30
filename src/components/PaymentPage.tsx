@@ -27,16 +27,13 @@ export default () => {
       maskClassName: 'bg-white fixed inset-0 bg-opacity-75 transition-opacity backdrop-blur-sm',
       showPromotionCodeInput: true,
     },
-    defaultCustomerName: 'userName',
-    normalizePriceOnRecurrence: 'monthly',
+    //  defaultCustomerName: 'userName',
+    //  normalizePriceOnRecurrence: 'monthly',
     defaultCurrency: 'usd',
     defaultRecurrence: 'yearly',
     onPaymentSuccessful: () => {}, //history.push('/app/?welcome-to-premium'),
     onPaymentError: () => console.log(`Payment error`),
   })
-
-  console.log('🛑 🛑 products:', products)
-  console.log('🛑 🛑 products:', products.length)
 
   return (
     <div className='bg-gray-900'>
@@ -68,14 +65,19 @@ export default () => {
               {products.map((product: any, index) => (
                 <div key={index} className='flex flex-col rounded-3xl bg-white shadow-xl ring-1 ring-black/10'>
                   <div className='p-8 sm:p-10'>
-                    <h3 className='text-lg font-semibold leading-8 tracking-tight text-indigo-600' id={product.id}>
+                    <h3 className='text-lg font-semibold leading-8 tracking-tight text-indigo-600 capitalize' id={product.id}>
                       {product.name}
                     </h3>
                     <div className='mt-4 flex items-baseline text-5xl font-bold tracking-tight text-gray-900'>
-                      ${product.selectedPricing.priceInteger}
-                      <span className='text-lg font-semibold leading-8 tracking-normal text-gray-500'>/mo</span>
+                      {selectedCurrency.symbol}
+                      {product.selectedPricing.priceInteger}
+                      <span className='text-lg font-semibold leading-8 tracking-normal text-gray-500'>
+                        /{selectedRecurrence.interval}
+                      </span>
                     </div>
-                    <p className='mt-6 text-base leading-7 text-gray-600'>{product.description || mockData.description}</p>
+                    <p className='mt-6 text-base leading-7 text-gray-600 capitalize'>
+                      {product.description || mockData.description}
+                    </p>
                   </div>
                   <div className='flex flex-1 flex-col p-2'>
                     <div className='flex flex-1 flex-col justify-between rounded-2xl bg-gray-50 p-6 sm:p-8'>
@@ -90,10 +92,11 @@ export default () => {
                         ))}
                       </ul>
                       <div className='mt-8'>
-                        <a className='inline-block w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-center text-sm font-semibold leading-5 text-white shadow-md hover:bg-indigo-700'>
+                        <a className='inline-block w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-center text-sm font-semibold leading-5 text-white shadow-md hover:bg-indigo-700 cursor-pointer'>
                           Get started today
                         </a>
                       </div>
+                      <product.selectedPricing.paymentButton />
                     </div>
                   </div>
                 </div>
