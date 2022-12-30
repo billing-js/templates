@@ -1,22 +1,19 @@
 import React from 'react'
 
-import { useHistory, Link } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 import { useProducts, PaymentModal } from '@billing-js/react-billing-js'
 import tw from 'tailwind-styled-components'
-
 import { CheckIcon, PlusIcon } from '@heroicons/react/outline'
+import config from '../config'
 
-const PricingPage = ({ user }: any) => {
-  const history = useHistory()
-
+export default ({ user }: any) => {
   const {
     products: [PersonalProPlan, TeamPlan],
     pricingFilter: {
       currency: { selectedCurrency },
       recurrence: { selectedRecurrence, availableRecurrences, setRecurrence },
     },
-  } = useProducts(CONFIG.productIds, {
+  } = useProducts(config.stripe.products, {
     modal: {
       maskClassName: 'bg-white fixed inset-0 bg-opacity-75 transition-opacity backdrop-blur-sm',
       showPromotionCodeInput: true,
@@ -25,25 +22,14 @@ const PricingPage = ({ user }: any) => {
     normalizePriceOnRecurrence: 'monthly',
     defaultCurrency: 'usd',
     defaultRecurrence: 'yearly',
-    onPaymentSuccessful: () => history.push('/app/?welcome-to-premium'),
+    onPaymentSuccessful: () => {}, //history.push('/app/?welcome-to-premium'),
     onPaymentError: () => console.log(`Payment error`),
   })
 
-  const renderFeature = (feature) => {
-    if (feature.link) {
-      return (
-        <HashLink key={feature.name} smooth to={feature.link ? `/premium#${feature.link}` : null} className='flex'>
-          {renderFeatureContent(feature.name)}
-        </HashLink>
-      )
-    }
-    return renderFeatureContent(feature.name)
-  }
-
-  const renderFeatureContent = (feature) => (
-    <li key={feature} className='flex'>
+  const renderFeature = (feature: any) => (
+    <li key={feature.name} className='flex'>
       <CheckIcon className='flex-shrink-0 w-6 h-6 text-blue-500' aria-hidden='true' />
-      <span className='ml-3 text-gray-900 text-base'>{feature}</span>
+      <span className='ml-3 text-gray-900 text-base'>{feature.name}</span>
     </li>
   )
 
@@ -66,7 +52,7 @@ const PricingPage = ({ user }: any) => {
     )
   }
 
-  const renderPremiumTier = (product) => {
+  const renderPremiumTier = (product: any) => {
     return (
       <div className='relative p-8 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col'>
         <div className='flex-1 mb-6'>
@@ -85,7 +71,6 @@ const PricingPage = ({ user }: any) => {
           </p>
           <p className='mt-6 text-gray-500'>{product.description}</p>
           {/* Feature list */}
-          // eslint-disable-next-line jsx-a11y/no-redundant-roles
           <ul role='list' className='mt-6 space-y-6'>
             {product.features.map(renderFeature)}
           </ul>
@@ -158,19 +143,12 @@ const PricingPage = ({ user }: any) => {
           })}
         </div>
       </div>
-      <LogoCloud />
-      <FAQ />
     </>
   )
 }
 
-export default connect(({ user }: any) => ({
-  user,
-}))(PricingPage)
-
 const RecurrenceSwitchWrapper = tw.div`
     flex
-
 `
 const RecurrenceSwitch = tw.div`
     relative

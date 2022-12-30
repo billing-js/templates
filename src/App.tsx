@@ -14,7 +14,7 @@ export default (): React.ReactElement => {
     <Container>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<PaymentPage1 />} />
+          <Route path='/' element={<PaymentPage2 />} />
           <Route path='/pay' element={<PaymentPage1 />} />
           <Route path='/pay2' element={<PaymentPage2 />} />
           <Route path='/paymentSuccessful' element={<Success />} />
