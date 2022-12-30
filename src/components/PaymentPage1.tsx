@@ -1,5 +1,4 @@
-import { useAuth, useProducts, PaymentModal } from '@billing-js/react-billing-js'
-import * as React from 'react'
+import { useAuth, useProducts } from '@billing-js/react-billing-js'
 import { useEffect, useState } from 'react'
 import config from '../config'
 

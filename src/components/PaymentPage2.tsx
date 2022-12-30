@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Link } from 'react-router-dom'
 import { useProducts, PaymentModal } from '@billing-js/react-billing-js'
 import tw from 'tailwind-styled-components'
