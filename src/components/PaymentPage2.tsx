@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useProducts, PaymentModal } from '@billing-js/react-billing-js'
-import tw from 'tailwind-styled-components'
 import { CheckIcon, PlusIcon } from '@heroicons/react/24/outline'
 import config from '../config'
 
-export default ({ user }: any) => {
+export default () => {
   const {
     products: [PersonalProPlan, TeamPlan],
     pricingFilter: {
@@ -16,7 +15,7 @@ export default ({ user }: any) => {
       maskClassName: 'bg-white fixed inset-0 bg-opacity-75 transition-opacity backdrop-blur-sm',
       showPromotionCodeInput: true,
     },
-    defaultCustomerName: user?.displayName ?? '',
+    defaultCustomerName: 'userName',
     normalizePriceOnRecurrence: 'monthly',
     defaultCurrency: 'usd',
     defaultRecurrence: 'yearly',
@@ -83,97 +82,58 @@ export default ({ user }: any) => {
     )
   }
 
-  const renderRecurrenceSwitch = () => {
-    // console.log(`selectedRecurrence`, selectedRecurrence)
-    return (
-      <RecurrenceSwitchWrapper>
-        <RecurrenceSwitch>
+  return (
+    <div className='max-w-7xl mx-auto pt-24 px-4 bg-white sm:px-6 lg:px-8'>
+      <PaymentModal />
+      <h2 className='text-3xl font-extrabold text-gray-900 sm:text-5xl sm:leading-none sm:tracking-tight lg:text-6xl'>
+        Pricing plans for teams of all sizes
+      </h2>
+      <p className='mt-6 max-w-2xl text-xl text-gray-500'>
+        {"Find the perfect plan for you or your team that's packed with all the "}
+        <Link to='/premium#shared-lists'>Premium features</Link>
+      </p>
+
+      <div className='flex'>
+        <div className='relative self-center mt-6 bg-gray-100 rounded-lg p-0.5 flex sm:mt-8'>
           {availableRecurrences.map(({ name }) => (
-            <RecurrenceSwitchButton
+            <button
               key={String(name)}
               type='button'
               onClick={() => setRecurrence(availableRecurrences.find((r) => r.name === name))}
-              $selected={selectedRecurrence.name === name}
+              className={
+                (selectedRecurrence.name === name ? 'bg-white shadow-sm' : 'bg-transparent text-opacity-75') +
+                'relative capitalize border-gray-200  rounded-md py-2 px-4 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none'
+              }
             >
               {name} billing
-            </RecurrenceSwitchButton>
+            </button>
           ))}
-        </RecurrenceSwitch>
-      </RecurrenceSwitchWrapper>
-    )
-  }
-
-  return (
-    <>
-      <div className='max-w-7xl mx-auto pt-24 px-4 bg-white sm:px-6 lg:px-8'>
-        <PaymentModal />
-        <h2 className='text-3xl font-extrabold text-gray-900 sm:text-5xl sm:leading-none sm:tracking-tight lg:text-6xl'>
-          Pricing plans for teams of all sizes
-        </h2>
-        <p className='mt-6 max-w-2xl text-xl text-gray-500'>
-          {"Find the perfect plan for you or your team that's packed with all the "}
-          <Link to='/premium#shared-lists'>Premium features</Link>
-        </p>
-
-        {renderRecurrenceSwitch()}
-
-        {/* Tiers */}
-        <div className='mt-10 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8'>
-          {renderFreeTier()}
-          {renderPremiumTier({
-            ...PersonalProPlan,
-            features: [
-              { name: 'Unlimited shared lists', link: 'shared-lists' },
-              { name: 'Unlimited boards', link: 'boards' },
-              { name: 'Boards and lists customization', link: 'boards-and-lists-customization' },
-              { name: 'Custom task labels', link: 'labels' },
-            ],
-          })}
-          {renderPremiumTier({
-            ...TeamPlan,
-            teamPlan: true,
-            features: [
-              { name: 'Everything in Pro' },
-              { name: 'Unlimited shared boards' },
-              { name: 'Team billing' },
-              { name: 'Priority support' },
-            ],
-          })}
         </div>
       </div>
-    </>
+
+      {/* Tiers */}
+      <div className='mt-10 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8'>
+        {renderFreeTier()}
+        {renderPremiumTier({
+          ...PersonalProPlan,
+          features: [
+            { name: 'Unlimited shared lists', link: 'shared-lists' },
+            { name: 'Unlimited boards', link: 'boards' },
+            { name: 'Boards and lists customization', link: 'boards-and-lists-customization' },
+            { name: 'Custom task labels', link: 'labels' },
+          ],
+        })}
+        {renderPremiumTier({
+          ...TeamPlan,
+          teamPlan: true,
+          features: [
+            { name: 'Everything in Pro' },
+            { name: 'Unlimited shared boards' },
+            { name: 'Team billing' },
+            { name: 'Priority support' },
+          ],
+        })}
+      </div>
+    </div>
   )
 }
-
-const RecurrenceSwitchWrapper = tw.div`
-    flex
-`
-const RecurrenceSwitch = tw.div`
-    relative
-    self-center
-    mt-6
-    bg-gray-100
-    rounded-lg
-    p-0.5
-    flex
-    sm:mt-8
-`
-
-const RecurrenceSwitchButton = tw.button<{ $selected: boolean }>`
-    relative
-    capitalize
-    
-    border-gray-200
-    rounded-md
-    
-    py-2
-    px-4
-    text-sm
-    font-medium
-    text-gray-900
-    whitespace-nowrap
-
-    focus:outline-none
-
-    ${(p) => (p.$selected ? 'bg-white shadow-sm' : 'bg-transparent text-opacity-75')}
-`

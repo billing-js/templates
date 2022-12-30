@@ -29,7 +29,7 @@ export default () => {
       currency: { selectedCurrency, availableCurrencies, setCurrency },
       recurrence: { selectedRecurrence, availableRecurrences, setRecurrence },
     },
-  } = useProducts([config.stripe.products[0]], {
+  } = useProducts(config.stripe.products, {
     modal: { maskClassName: 'bg-white opacity-75' },
     defaultCurrency: 'eur',
     normalizePriceOnRecurrence: 'monthly',
