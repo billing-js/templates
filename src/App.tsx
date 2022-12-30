@@ -2,9 +2,10 @@ import * as React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useAuth } from '@billing-js/react-billing-js'
 import tw from 'tailwind-styled-components'
-import PaymentPage from './components/PaymentPage'
-import PaymentSuccessful from './components/PaymentSuccessful'
+import Success from './components/Success'
 import Error from './components/Error'
+import PaymentPage1 from './components/PaymentPage1'
+import PaymentPage2 from './components/PaymentPage2'
 
 export default (): React.ReactElement => {
   const { loading } = useAuth()
@@ -13,9 +14,10 @@ export default (): React.ReactElement => {
     <Container>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<PaymentPage />} />
-          <Route path='/pay' element={<PaymentPage />} />
-          <Route path='/paymentSuccessful' element={<PaymentSuccessful />} />
+          <Route path='/' element={<PaymentPage1 />} />
+          <Route path='/pay' element={<PaymentPage1 />} />
+          <Route path='/pay2' element={<PaymentPage2 />} />
+          <Route path='/paymentSuccessful' element={<Success />} />
           <Route path='/error' element={<Error />} />
         </Routes>
       </BrowserRouter>

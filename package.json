@@ -26,7 +26,8 @@
   },
   "eslintConfig": {
     "rules": {
-      "import/no-anonymous-default-export": "off"
+      "import/no-anonymous-default-export": "off",
+      "jsx-a11y/no-redundant-roles": "off"
     },
     "extends": [
       "react-app"
