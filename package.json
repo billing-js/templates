@@ -29,7 +29,8 @@
     "rules": {
       "import/no-anonymous-default-export": "off",
       "jsx-a11y/no-redundant-roles": "off",
-      "jsx-a11y/anchor-is-valid": "off"
+      "jsx-a11y/anchor-is-valid": "off",
+      "jsx-a11y/alt-text": "off"
     },
     "extends": [
       "react-app"

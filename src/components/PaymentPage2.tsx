@@ -10,7 +10,7 @@ export default () => {
       currency: { selectedCurrency },
       recurrence: { selectedRecurrence, availableRecurrences, setRecurrence },
     },
-  } = useProducts(config.stripe.products, {
+  } = useProducts([config.stripe.products[0], config.stripe.products[0]], {
     modal: {
       maskClassName: 'bg-white fixed inset-0 bg-opacity-75 transition-opacity backdrop-blur-sm',
       showPromotionCodeInput: true,

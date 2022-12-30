@@ -2,44 +2,27 @@ import { useProducts, PaymentModal } from '@billing-js/react-billing-js'
 import config from '../config'
 import { CheckIcon } from '@heroicons/react/24/outline'
 
-const tiers = [
-  {
-    id: 'tier-hobby',
-    name: 'Hobby',
-    href: '#',
-    priceMonthly: 49,
-    description: 'Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis.',
-    features: [
-      'Pariatur quod similique',
-      'Sapiente libero doloribus modi nostrum',
-      'Vel ipsa esse repudiandae excepturi',
-      'Itaque cupiditate adipisci quibusdam',
-    ],
-  },
-  {
-    id: 'tier-team',
-    name: 'Team',
-    href: '#',
-    priceMonthly: 79,
-    description: 'Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis.',
-    features: [
-      'Pariatur quod similique',
-      'Sapiente libero doloribus modi nostrum',
-      'Vel ipsa esse repudiandae excepturi',
-      'Itaque cupiditate adipisci quibusdam',
-      'Sapiente libero doloribus modi nostrum',
-    ],
-  },
-]
+const mockData = {
+  description: 'YOLO Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis.',
+  features: [
+    'Pariatur quod similique',
+    'Sapiente libero doloribus modi nostrum',
+    'Vel ipsa esse repudiandae excepturi',
+    'Itaque cupiditate adipisci quibusdam',
+    'Sapiente libero doloribus modi nostrum',
+  ],
+}
 
 export default () => {
+  const activeStripeProducts = config.stripe.products.filter((product: any) => product)
+  console.log('🛑 activeStripeProducts:', activeStripeProducts)
   const {
-    products: [premiumPlan],
+    products,
     pricingFilter: {
       currency: { selectedCurrency },
       recurrence: { selectedRecurrence, availableRecurrences, setRecurrence },
     },
-  } = useProducts(config.stripe.products, {
+  } = useProducts(activeStripeProducts, {
     modal: {
       maskClassName: 'bg-white fixed inset-0 bg-opacity-75 transition-opacity backdrop-blur-sm',
       showPromotionCodeInput: true,
@@ -52,14 +35,16 @@ export default () => {
     onPaymentError: () => console.log(`Payment error`),
   })
 
+  console.log('🛑 🛑 products:', products)
+  console.log('🛑 🛑 products:', products.length)
+
   return (
     <div className='bg-gray-900'>
-      <div className='relative overflow-hidden pt-28 pb-96 lg:pt-40'>
+      <div className='relative overflow-hidden pt-12 pb-96 lg:pt-20'>
         <div>
           <img
             className='absolute bottom-0 left-1/2 w-[1440px] max-w-none -translate-x-1/2'
             src='https://tailwindui.com/img/component-images/grid-blur-purple-on-black.jpg'
-            alt=''
           />
         </div>
         <div className='relative mx-auto max-w-7xl px-6 text-center lg:px-8'>
@@ -80,23 +65,23 @@ export default () => {
         <div className='relative -mt-80'>
           <div className='relative z-10 mx-auto max-w-7xl px-6 lg:px-8'>
             <div className='mx-auto grid max-w-2xl grid-cols-1 gap-8 lg:max-w-4xl lg:grid-cols-2 lg:gap-8'>
-              {tiers.map((tier) => (
-                <div key={tier.name} className='flex flex-col rounded-3xl bg-white shadow-xl ring-1 ring-black/10'>
+              {products.map((product: any, index) => (
+                <div key={index} className='flex flex-col rounded-3xl bg-white shadow-xl ring-1 ring-black/10'>
                   <div className='p-8 sm:p-10'>
-                    <h3 className='text-lg font-semibold leading-8 tracking-tight text-indigo-600' id={tier.id}>
-                      {tier.name}
+                    <h3 className='text-lg font-semibold leading-8 tracking-tight text-indigo-600' id={product.id}>
+                      {product.name}
                     </h3>
                     <div className='mt-4 flex items-baseline text-5xl font-bold tracking-tight text-gray-900'>
-                      ${tier.priceMonthly}
+                      ${product.selectedPricing.priceInteger}
                       <span className='text-lg font-semibold leading-8 tracking-normal text-gray-500'>/mo</span>
                     </div>
-                    <p className='mt-6 text-base leading-7 text-gray-600'>{tier.description}</p>
+                    <p className='mt-6 text-base leading-7 text-gray-600'>{product.description || mockData.description}</p>
                   </div>
                   <div className='flex flex-1 flex-col p-2'>
                     <div className='flex flex-1 flex-col justify-between rounded-2xl bg-gray-50 p-6 sm:p-8'>
                       <ul role='list' className='space-y-6'>
-                        {tier.features.map((feature) => (
-                          <li key={feature} className='flex items-start'>
+                        {mockData.features.map((feature, index) => (
+                          <li key={index} className='flex items-start'>
                             <div className='flex-shrink-0'>
                               <CheckIcon className='h-6 w-6 text-indigo-600' aria-hidden='true' />
                             </div>
@@ -105,11 +90,7 @@ export default () => {
                         ))}
                       </ul>
                       <div className='mt-8'>
-                        <a
-                          href={tier.href}
-                          className='inline-block w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-center text-sm font-semibold leading-5 text-white shadow-md hover:bg-indigo-700'
-                          aria-describedby={tier.id}
-                        >
+                        <a className='inline-block w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-center text-sm font-semibold leading-5 text-white shadow-md hover:bg-indigo-700'>
                           Get started today
                         </a>
                       </div>
