@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useProducts, PaymentModal } from '@billing-js/react-billing-js'
 import tw from 'tailwind-styled-components'
-import { CheckIcon, PlusIcon } from '@heroicons/react/outline'
+import { CheckIcon, PlusIcon } from '@heroicons/react/24/outline'
 import config from '../config'
 
 export default ({ user }: any) => {

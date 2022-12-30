@@ -27,5 +27,4 @@ export default (): React.ReactElement => {
 }
 
 const Container = tw.div`
-  max-w-5xl
 `
