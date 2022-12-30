@@ -19,18 +19,12 @@ root.render(
         productPageUrl: '/pricing',
         customerPortalUrl: '/subscription',
       }}
-      signInCustomer={() => {
-        // googleTasksApi
-        //   .signOut()
-        //   .then(() => window.open('/login?redirect=/pricing', '_self'))
-        //   .catch(console.error)
-      }}
+      signInCustomer={() => {}}
       signOutCustomer={() => window.open('/signOut', '_self')}
       onError={(error: any) => {
         console.error(error)
-        if (error.type === BillingErrorType.customer_not_found || error.type === BillingErrorType.stripe_account_not_found) {
+        if (error.type === BillingErrorType.customer_not_found || error.type === BillingErrorType.stripe_account_not_found)
           return window.open('/signOut', '_self')
-        }
       }}
     >
       <App />
