@@ -82,7 +82,7 @@ export default () => {
                   </div>
                   <div className='flex flex-1 flex-col p-2'>
                     <div className='flex flex-1 flex-col justify-between rounded-2xl bg-gray-50 p-6 sm:p-8'>
-                      <ul role='list' className='space-y-6'>
+                      <ul role='list' className='space-y-6 pb-6'>
                         {mockData.features.map((feature, index) => (
                           <li key={index} className='flex items-start'>
                             <div className='flex-shrink-0'>
@@ -92,11 +92,6 @@ export default () => {
                           </li>
                         ))}
                       </ul>
-                      <div className='mt-8'>
-                        <a className='inline-block w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-center text-sm font-semibold leading-5 text-white shadow-md hover:bg-indigo-700 cursor-pointer'>
-                          Get started today
-                        </a>
-                      </div>
                       <product.selectedPricing.paymentButton />
                     </div>
                   </div>

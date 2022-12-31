@@ -4,8 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="description" content="Stripe react pricing page and customer portal" />
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        content: ['./src/**/*.tsx', './src/**/*.ts'],
+        theme: { extend: { fontFamily: { sans: ['Inter var', ...defaultTheme.fontFamily.sans] } } },
+        plugins: [],
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

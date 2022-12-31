@@ -1,8 +1,6 @@
-index.js
-index.js.map
 *.log
+.DS_Store
 node_modules/
 dist/
 yarn.lock 
-.DS_Store
 config.ts
