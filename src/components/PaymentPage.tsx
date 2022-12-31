@@ -16,7 +16,7 @@ const mockData = {
 
 export default () => {
   const activeStripeProducts = config.stripe.products.filter((product: any) => product)
-  console.log('🛑 activeStripeProducts:', activeStripeProducts)
+  const multiplePriceRecurrences = activeStripeProducts.length > 1
   const {
     products,
     pricingFilter: {
@@ -29,7 +29,7 @@ export default () => {
       showPromotionCodeInput: true,
     },
     defaultCustomerName: 'userName',
-    //  normalizePriceOnRecurrence: 'monthly',
+    normalizePriceOnRecurrence: multiplePriceRecurrences ? 'monthly' : undefined,
     defaultCurrency: 'usd',
     defaultRecurrence: 'yearly',
     onPaymentSuccessful: () => {}, //history.push('/app/?welcome-to-premium'),
@@ -61,6 +61,26 @@ export default () => {
       </div>
       <div className='flow-root bg-white pb-28 lg:pb-40'>
         <div className='relative -mt-80'>
+          {/* SWITCH */}
+          {multiplePriceRecurrences && (
+            <div className='mx-auto flex max-w-lg flex-col items-center justify-center rounded-xl mb-16 text-center'>
+              <div className='relative flex rounded-lg bg-gray-100 p-0.5'>
+                {availableRecurrences.map(({ name }) => (
+                  <button
+                    key={String(name)}
+                    type='button'
+                    onClick={() => setRecurrence(availableRecurrences.find((r: any) => r.name === name))}
+                    className={`${
+                      selectedRecurrence.name === name ? 'bg-white shadow-sm' : 'text-opacity-50 hover:text-opacity-75'
+                    } whitespace-no-wrap focus:shadow-outline-none relative w-1/2 select-none rounded-md border-transparent py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out focus:z-10 focus:outline-none sm:w-auto sm:px-8 px-6`}
+                  >
+                    {name} billing
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          {/* PRICES */}
           <div className='relative z-10 mx-auto max-w-7xl px-6 lg:px-8'>
             <div className='mx-auto grid max-w-2xl grid-cols-1 gap-8 lg:max-w-4xl lg:grid-cols-2 lg:gap-8'>
               {products.map((product: any, index) => (
@@ -73,7 +93,7 @@ export default () => {
                       {selectedCurrency.symbol}
                       {product.selectedPricing.priceInteger}
                       <span className='text-lg font-semibold leading-8 tracking-normal text-gray-500'>
-                        /{selectedRecurrence.interval}
+                        / {multiplePriceRecurrences ? 'month' : selectedRecurrence.interval}
                       </span>
                     </div>
                     <p className='mt-6 text-base leading-7 text-gray-600 capitalize'>
