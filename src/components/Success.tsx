@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 export default () => {
   return (
     <div className='bg-white flex flex-row justify-between '>

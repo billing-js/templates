@@ -3,7 +3,7 @@ import config from '../config'
 import { CheckIcon } from '@heroicons/react/24/outline'
 
 const mockData = {
-  description: 'YOLO Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis.',
+  description: 'Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis.',
   features: [
     'Pariatur quod similique',
     'Sapiente libero doloribus modi nostrum',
@@ -27,7 +27,7 @@ export default () => {
       maskClassName: 'bg-white fixed inset-0 bg-opacity-75 transition-opacity backdrop-blur-sm',
       showPromotionCodeInput: true,
     },
-    //  defaultCustomerName: 'userName',
+    defaultCustomerName: 'userName',
     //  normalizePriceOnRecurrence: 'monthly',
     defaultCurrency: 'usd',
     defaultRecurrence: 'yearly',
