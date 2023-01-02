@@ -71,9 +71,9 @@ export default () => {
       )}
 
       {/* PRICES */}
-      <div className='mt-16 bg-white pb-12 lg:mt-20 lg:pb-20'>
-        <div className='relative z-0'>
-          <div className='absolute inset-0 h-5/6 bg-gray-900 lg:h-2/3' />
+      <div className='mt-16 bg-white lg:mt-20 lg:pb-20'>
+        <div className='relative z-0 pb-16'>
+          <div className='absolute inset-0 h-5/6 bg-gray-900 h-full lg:h-2/3 ' />
           <div className='flex justify-center mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
             <div className={`relative lg:grid lg:grid-cols-${products.length} gap-x-0`}>
               {products.map((product: any, index) => {
