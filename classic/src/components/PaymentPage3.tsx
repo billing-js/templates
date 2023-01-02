@@ -37,6 +37,7 @@ export default () => {
 
   return (
     <div className='bg-gray-900'>
+      {/* HEADER */}
       <div className='px-4 pt-12 sm:px-6 lg:px-8 lg:pt-20'>
         <div className='text-center'>
           <h2 className='text-xl font-semibold leading-6 text-gray-300'>Pricing</h2>
@@ -71,73 +72,80 @@ export default () => {
       )}
 
       {/* PRICES */}
-      <div className='mt-16 bg-white lg:mt-20 lg:pb-20'>
-        <div className='relative z-0 pb-16'>
-          <div className='absolute inset-0 h-5/6 bg-gray-900 h-full lg:h-2/3 ' />
-          <div className='flex justify-center mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-            <div className={`relative lg:grid lg:grid-cols-${products.length} gap-x-0`}>
-              {products.map((product: any, index) => {
-                const mostPopular = index === Math.floor(products.length / 2)
-                return (
+      <div className='mt-16 bg-white lg:mt-20 lg:pb-20 relative z-0 pb-16'>
+        <div className='absolute inset-0 h-5/6 bg-gray-900 h-full lg:h-2/3 ' />
+        <div className='flex justify-center mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+          <div className={`relative lg:grid lg:grid-cols-${products.length} gap-x-0`}>
+            {products.map((product: any, index) => {
+              const mostPopular = index === Math.floor(products.length / 2)
+              const popularityIndex = Math.abs(index - Math.floor(products.length / 2))
+              return (
+                <div
+                  key={index}
+                  className={`mx-auto 
+                  max-w-md 
+                  lg:mx-0 
+                  rounded-lg 
+                  mb-12 
+                  mx-${6 * popularityIndex} 
+                  lg:my-${6 * popularityIndex} 
+                  z-${50 - 10 * popularityIndex} 
+                  shadow-${mostPopular ? '2xl' : 'lg'}`}
+                >
+                  {mostPopular && (
+                    <div className='flex -mb-8 -translate-y-1/2 justify-center'>
+                      <span className='inline-flex rounded-full bg-indigo-600 px-4 py-1 text-base font-semibold text-white'>
+                        Most popular
+                      </span>
+                    </div>
+                  )}
                   <div
-                    key={index}
-                    className={`mx-auto max-w-md lg:mx-0 rounded-lg mb-12 
-                    mx-${6 * Math.abs(index - Math.floor(products.length / 2))}
-                    lg:my-${6 * Math.abs(index - Math.floor(products.length / 2))}
-                    z-${50 - 10 * Math.abs(index - Math.floor(products.length / 2))}
-                    shadow-${mostPopular ? '2xl' : 'lg'}
-                    `}
+                    className={`flex 
+                    h-full 
+                    flex-col 
+                    overflow-hidden 
+                    rounded-lg 
+                    lg:rounded-lg 
+                    ${mostPopular && 'ring ring-indigo-600'}`}
                   >
-                    {mostPopular && (
-                      <div className='flex -mb-8 -translate-y-1/2 justify-center'>
-                        <span className='inline-flex rounded-full bg-indigo-600 px-4 py-1 text-base font-semibold text-white'>
-                          Most popular
-                        </span>
-                      </div>
-                    )}
-                    <div
-                      className={`flex h-full flex-col overflow-hidden rounded-lg lg:rounded-lg 
-                      ${mostPopular && 'ring ring-indigo-600'}`}
-                    >
-                      <div className={`flex flex-1 flex-col justify-center bg-white px-6 py-6`}>
-                        <div>
-                          <h3 className='text-center text-2xl font-medium text-gray-900' id='tier-hobby'>
-                            {product.name}
-                          </h3>
-                          <p className='text-center mt-6 text-base leading-7 text-gray-600 capitalize'>
-                            {product.description || mockData.description}
-                          </p>
-                          <div className='mt-6 flex items-center justify-center'>
-                            <span className='flex items-start px-3 text-6xl tracking-tight text-gray-900'>
-                              <span className='mt-2 mr-2 text-4xl font-medium tracking-tight'>{selectedCurrency.symbol}</span>
-                              <span className='font-bold'>{product.selectedPricing.priceInteger}</span>
-                            </span>
-                            <span className='text-xl font-medium text-gray-500'>
-                              / {multiplePriceRecurrences ? 'month' : selectedRecurrence.interval}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className='flex flex-1 flex-col justify-between border-t-2 border-gray-100 bg-gray-50 p-6 sm:p-10 lg:p-6 xl:p-10'>
-                        <ul role='list' className='space-y-4'>
-                          {mockData.features.map((feature, index) => (
-                            <li key={index} className='flex items-start'>
-                              <div className='flex-shrink-0'>
-                                <CheckIcon className='h-6 w-6 flex-shrink-0 text-green-500' aria-hidden='true' />
-                              </div>
-                              <p className='ml-3 text-base font-medium text-gray-500'>{feature}</p>
-                            </li>
-                          ))}
-                        </ul>
-                        <div className='mt-8'>
-                          <product.selectedPricing.paymentButton />
+                    <div className={`flex flex-1 flex-col justify-center bg-white px-6 py-6`}>
+                      <div>
+                        <h3 className='text-center text-2xl font-medium text-gray-900' id='tier-hobby'>
+                          {product.name}
+                        </h3>
+                        <p className='text-center mt-6 text-base leading-7 text-gray-600 capitalize'>
+                          {product.description || mockData.description}
+                        </p>
+                        <div className='mt-6 flex items-center justify-center'>
+                          <span className='flex items-start px-3 text-6xl tracking-tight text-gray-900'>
+                            <span className='mt-2 mr-2 text-4xl font-medium tracking-tight'>{selectedCurrency.symbol}</span>
+                            <span className='font-bold'>{product.selectedPricing.priceInteger}</span>
+                          </span>
+                          <span className='text-xl font-medium text-gray-500'>
+                            / {multiplePriceRecurrences ? 'month' : selectedRecurrence.interval}
+                          </span>
                         </div>
                       </div>
                     </div>
+                    <div className='flex flex-1 flex-col justify-between border-t-2 border-gray-100 bg-gray-50 p-6 sm:p-10 lg:p-6 xl:p-10'>
+                      <ul role='list' className='space-y-4'>
+                        {mockData.features.map((feature, index) => (
+                          <li key={index} className='flex items-start'>
+                            <div className='flex-shrink-0'>
+                              <CheckIcon className='h-6 w-6 flex-shrink-0 text-green-500' aria-hidden='true' />
+                            </div>
+                            <p className='ml-3 text-base font-medium text-gray-500'>{feature}</p>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className='mt-8'>
+                        <product.selectedPricing.paymentButton />
+                      </div>
+                    </div>
                   </div>
-                )
-              })}
-            </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
