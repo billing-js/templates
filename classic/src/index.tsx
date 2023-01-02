@@ -19,7 +19,7 @@ root.render(
         productPageUrl: '/pricing',
         customerPortalUrl: '/subscription',
       }}
-      signInCustomer={() => {}}
+      signInCustomer={() => console.log('⏩ signInCustomer')}
       signOutCustomer={() => window.open('/signOut', '_self')}
       onError={(error: any) => {
         console.error(error)
