@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useProducts } from '@billing-js/react-billing-js'
 import { CheckIcon } from '@heroicons/react/24/outline'
-import config from './config'
+import config from '../config'
 
 const mockData = {
   description: 'Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis.',

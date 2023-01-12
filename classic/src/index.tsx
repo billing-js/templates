@@ -2,7 +2,7 @@ import * as React from 'react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BillingProvider, BillingErrorType } from '@billing-js/react-billing-js'
-import config from './config'
+import config from '../config'
 import App from './App'
 import CustomerPortal from './components/CustomerPortal'
 

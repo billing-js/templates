@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useProducts, PaymentModal } from '@billing-js/react-billing-js'
-import config from '../config'
+import config from '../../config'
 import { CheckIcon } from '@heroicons/react/24/outline'
 
 const mockData = {
