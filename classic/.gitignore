@@ -4,3 +4,4 @@ node_modules/
 dist/
 yarn.lock 
 config.ts
+tsconfig.json
